@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "622354740510",
+    "project_id": "ecommerce-b44bb",
+    "storage_bucket": "ecommerce-b44bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622354740510:android:6c2fb909483024fcde050f",
+        "android_client_info": {
+          "package_name": "com.example.anju_project2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622354740510-mah3rsb8ot6gsi4rkbruttuf178fncd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSEZa8EpjFTLriU0EYD64JMqpt_uJ5jJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622354740510-mah3rsb8ot6gsi4rkbruttuf178fncd2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
