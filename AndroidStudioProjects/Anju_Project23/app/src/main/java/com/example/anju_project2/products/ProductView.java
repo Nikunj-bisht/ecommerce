@@ -15,7 +15,7 @@ public class ProductView extends RecyclerView.ViewHolder {
     private ImageView imageView;
     private View view;
     private TextView textView1;
-
+    private TextView textView2;
     public TextView getTextView1() {
         return textView1;
     }
@@ -29,6 +29,7 @@ public class ProductView extends RecyclerView.ViewHolder {
         textView = itemView.findViewById(R.id.textView9);
         imageView = itemView.findViewById(R.id.imageView);
         textView1 = itemView.findViewById(R.id.textView2);
+        textView2 = itemView.findViewById(R.id.textView6);
         this.view = itemView;
     }
 
@@ -50,4 +51,15 @@ public class ProductView extends RecyclerView.ViewHolder {
 
     public View getView() { return this.view ;}
 
+    public void setView(View view) {
+        this.view = view;
+    }
+
+    public TextView getTextView2() {
+        return textView2;
+    }
+
+    public void setTextView2(TextView textView2) {
+        this.textView2 = textView2;
+    }
 }

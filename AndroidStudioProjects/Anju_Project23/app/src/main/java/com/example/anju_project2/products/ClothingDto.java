@@ -7,10 +7,36 @@ public class ClothingDto {
     private String price;
     private String url;
 
-    ClothingDto(String name , String price,String url){
+    private String title;
+
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+ public ClothingDto(){
+
+ }
+
+  public   ClothingDto(String name , String price, String url,String id,String title){
          this.name = name;
          this.price = price;
          this.url = url;
+         this.id = id;
+         this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getName() {

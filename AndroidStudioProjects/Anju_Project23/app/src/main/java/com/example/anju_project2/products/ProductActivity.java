@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,8 +23,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
-public class ProductActivity extends AppCompatActivity {
+public class ProductActivity extends AppCompatActivity implements ProductRecyclerAdapter.ProductCallback {
     private  RecyclerView recyclerView;
     private ArrayList<ClothingDto> arrayList;
     ProgressBar progressBar;
@@ -45,13 +47,13 @@ public class ProductActivity extends AppCompatActivity {
                 .get()
                 .addOnCompleteListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots.getResult()) {
-                        arrayList1.add(new ClothingDto(document.getData().get("name").toString(),document.getData().get("price").toString(),document.getData().get("url").toString()));
+                        arrayList1.add(new ClothingDto(document.getData().get("name").toString(),document.getData().get("price").toString(),document.getData().get("url").toString(),document.getId(),document.getData().get("title").toString()));
                         Log.d("TAG", document.getId() + " => " + document.getData());
 
                     }
 
                      progressBar.setVisibility(View.INVISIBLE);
-                    ProductRecyclerAdapter productRecyclerAdapter = new ProductRecyclerAdapter(arrayList1,this);
+                    ProductRecyclerAdapter productRecyclerAdapter = new ProductRecyclerAdapter(arrayList1,this,this);
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
                     recyclerView.setLayoutManager(gridLayoutManager);
                     recyclerView.setAdapter(productRecyclerAdapter);
@@ -84,5 +86,15 @@ public class ProductActivity extends AppCompatActivity {
 
                     Toast.makeText(ProductActivity.this,"Failed",Toast.LENGTH_LONG).show();
                 });
+    }
+
+
+
+    @Override
+    public void getProductDetails(String id) {
+        Intent intent = new Intent(this,ProductDetail.class);
+        intent.putExtra("id",id);
+        startActivity(intent);
+
     }
 }

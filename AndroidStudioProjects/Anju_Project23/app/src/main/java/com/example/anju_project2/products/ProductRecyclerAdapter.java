@@ -20,16 +20,27 @@ import com.example.anju_project2.R;
 
 import java.util.ArrayList;
 
+
+
 public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductView> {
 
+    public interface ProductCallback {
+
+       void getProductDetails(String id);
+
+    }
     private ArrayList<ClothingDto> clothingDtoArrayList;
     LayoutInflater layoutInflater;
     Context context;
 
-    public ProductRecyclerAdapter(ArrayList<ClothingDto> clothingDtoArrayList, Context context) {
+    ProductCallback callback;
+
+
+    public ProductRecyclerAdapter(ArrayList<ClothingDto> clothingDtoArrayList, Context context,ProductCallback productCallback) {
         this.clothingDtoArrayList = clothingDtoArrayList;
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
+        this.callback = productCallback;
     }
 
     @NonNull
@@ -42,14 +53,15 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductView> {
     @Override
     public void onBindViewHolder(@NonNull ProductView holder, int position) {
         holder.getTextView().setText(clothingDtoArrayList.get(position).getName());
-        holder.getTextView1().setText("$ "+clothingDtoArrayList.get(position).getPrice());
+        holder.getTextView2().setText(clothingDtoArrayList.get(position).getTitle());
+        holder.getView().setOnClickListener(click -> callback.getProductDetails(clothingDtoArrayList.get(position).getId()));
+        holder.getTextView1().setText(clothingDtoArrayList.get(position).getPrice());
         final int i = position;
         holder.getImageView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-//                cll.touch(i);
-
+                callback.getProductDetails(clothingDtoArrayList.get(position).getId());
             }
         });
         new Pictures(position, holder.getImageView(),context).start();
