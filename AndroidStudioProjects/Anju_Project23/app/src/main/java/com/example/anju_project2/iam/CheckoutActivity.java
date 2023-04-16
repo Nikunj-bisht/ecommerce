@@ -2,6 +2,7 @@ package com.example.anju_project2.iam;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
@@ -56,6 +57,10 @@ public class CheckoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
+        this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+        getSupportActionBar().setElevation(0);
         String pId = getIntent().getStringExtra("pId");
         recyclerView = findViewById(R.id.orderView);
         button = findViewById(R.id.button);
@@ -89,7 +94,7 @@ public class CheckoutActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         button.setEnabled(true);
                         for (QueryDocumentSnapshot q : task.getResult()) {
-                            arrayList.add(new OrderDto(q.getData().get("url").toString(), q.getData().get("quantity").toString(), q.getData().get("name").toString(), q.getData().get("size").toString(), q.getData().get("userId").toString(), q.getId()));
+                            arrayList.add(new OrderDto(q.getData().get("url").toString(), q.getData().get("quantity").toString(), q.getData().get("name").toString(), q.getData().get("size").toString(), q.getData().get("userId").toString(), q.getId(),q.getData().get("title").toString()));
                         }
                         CheckoutRecycler productRecyclerAdapter = new CheckoutRecycler(CheckoutActivity.this, arrayList);
                         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 20, false));

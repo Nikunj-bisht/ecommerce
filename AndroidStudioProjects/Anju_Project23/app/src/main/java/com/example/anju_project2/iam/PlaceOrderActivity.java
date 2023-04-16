@@ -1,5 +1,6 @@
 package com.example.anju_project2.iam;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
@@ -10,13 +11,18 @@ import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.example.anju_project2.R;
+import com.example.anju_project2.products.ProductActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 
@@ -26,16 +32,42 @@ public class PlaceOrderActivity extends AppCompatActivity {
     Button button;
     ProgressBar progressBar;
     ArrayList<OrderDto> arrayList;
+    EditText editText;
+    String cvv="";
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
+        this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+        getSupportActionBar().setElevation(0);
         button = findViewById(R.id.button4);
         button.setOnClickListener(click -> placeOrder());
         progressBar = findViewById(R.id.progressBar8);
         arrayList = (ArrayList<OrderDto>) getIntent().getSerializableExtra("data");
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+cvv = charSequence
+        .toString();
+if (cvv.length()>0){
+    button.setEnabled(true);
+}
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        button.setEnabled(false);
     }
 
     private void placeOrder() {
@@ -75,7 +107,11 @@ public class PlaceOrderActivity extends AppCompatActivity {
                         }
                         notificationManagerCompat.notify(1, notification);
                         progressBar.setVisibility(View.INVISIBLE);
-                        super.onBackPressed();
+                        Intent gotoScreenVar = new Intent(PlaceOrderActivity.this, ProductActivity.class);
+
+                        gotoScreenVar.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        startActivity(gotoScreenVar);
                     }
                 }).addOnFailureListener(fail -> {
 

@@ -22,7 +22,6 @@ public class CheckoutCardView extends RecyclerView.ViewHolder {
         textView1 = itemView.findViewById(R.id.textView8);
         textView2 = itemView.findViewById(R.id.textView10);
         textView3 = itemView.findViewById(R.id.textView11);
-        textView4 = itemView.findViewById(R.id.textView12);
 
 
     }

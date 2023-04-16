@@ -12,6 +12,8 @@ public class OrderDto implements Serializable {
     private String userId;
     private  String id;
 
+    private String title;
+
 
     public String getUrl() {
         return url;
@@ -33,13 +35,22 @@ public class OrderDto implements Serializable {
         this.id = id;
     }
 
-    public OrderDto(String url, String quantity, String name, String size, String userId , String id) {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public OrderDto(String url, String quantity, String name, String size, String userId , String id , String title) {
         this.url = url;
         this.quantity = quantity;
         this.name = name;
         this.size = size;
         this.userId = userId;
         this.id = id;
+        this.title = title;
     }
 
     public void setUrl(String url) {

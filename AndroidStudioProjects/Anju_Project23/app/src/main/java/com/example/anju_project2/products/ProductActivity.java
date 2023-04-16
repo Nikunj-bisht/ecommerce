@@ -166,14 +166,23 @@ public class ProductActivity extends AppCompatActivity implements ProductRecycle
     @Override
     public void deleteProducct(String id) {
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-        firebaseFirestore.collection("products").document(id)
-                .delete().addOnSuccessListener(success -> {
-                    fetchData();
-                }).addOnFailureListener(fail -> {
+        builder.setTitle("DELETE");
+        builder.setMessage("Are you sure you want to delete this?");
+        builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+            FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+            firebaseFirestore.collection("products").document(id)
+                    .delete().addOnSuccessListener(success -> {
+                        fetchData();
+                    }).addOnFailureListener(fail -> {
 
-                });
+                    });
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
 
 
         // A null listener allows the button to dismiss the dialog and take no further action.

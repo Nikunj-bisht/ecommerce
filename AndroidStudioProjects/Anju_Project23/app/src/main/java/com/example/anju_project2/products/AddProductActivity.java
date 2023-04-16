@@ -1,5 +1,6 @@
 package com.example.anju_project2.products;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -45,6 +46,10 @@ public class AddProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+        this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+        getSupportActionBar().setElevation(0);
         floatingActionButton = findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(click -> clickImage());
         imageView = findViewById(R.id.imageView6);
@@ -146,7 +151,7 @@ titleS = charSequence.toString();
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         HashMap<String,String> map = new HashMap<>();
         map.put("name",nameS);
-        map.put("price",priceS);
+        map.put("price","$"+priceS);
         map.put("title",titleS);
         map.put("url",cloudUrl);
         firebaseFirestore.collection("products")

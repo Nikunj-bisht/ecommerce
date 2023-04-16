@@ -60,7 +60,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="110dp"
         android:layout_marginEnd="110dp"
-        android:text="Signup"
+        android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

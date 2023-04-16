@@ -2,6 +2,7 @@ package com.example.anju_project2.products;
 
 import static android.app.PendingIntent.getActivity;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -52,8 +53,8 @@ public class ProductDetail extends AppCompatActivity {
     Button button;
     Button button8, button9, button10;
     ClothingDto clothingDto1;
-    Spinner spinner;
-    String quantity = "1";
+    Spinner spinner,spinner2;
+    String quantity = "1",size = "S";
     ProgressBar progressBar;
 
     @SuppressLint("MissingInflatedId")
@@ -61,6 +62,10 @@ public class ProductDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+        this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+        getSupportActionBar().setElevation(0);
 //        getSupportActionBar().hide();
         imageView = findViewById(R.id.imageView2);
         textView = findViewById(R.id.textView4);
@@ -70,13 +75,28 @@ public class ProductDetail extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         progressBar = findViewById(R.id.progressBar3);
         String[] items = new String[]{"1", "2", "3", "4", "5", "6", "7", "10", "11"};
+        String[] sizes = new String[]{"S","M","L","XL","XXL"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 //set the spinners adapter to the previously created one.
         spinner.setAdapter(adapter);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+//set the spinners adapter to the previously created one.
+        spinner2.setAdapter(adapter2);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 quantity = items[i];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                size = sizes[i];
             }
 
             @Override
@@ -116,11 +136,12 @@ public class ProductDetail extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
             Map<String, String> wishListData = new HashMap<>();
             wishListData.put("productId", clothingDto1.getId());
-            wishListData.put("quantity", "2");
-            wishListData.put("size", "S");
+            wishListData.put("quantity", quantity);
+            wishListData.put("size", size);
             wishListData.put("userId", id);
             wishListData.put("url", clothingDto1.getUrl());
             wishListData.put("name", clothingDto1.getName());
+            wishListData.put("title",clothingDto1.getTitle());
             db.collection("wishlist").add(wishListData).addOnSuccessListener(success -> {
                 progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(ProductDetail.this, "Added successfully", Toast.LENGTH_LONG).show();

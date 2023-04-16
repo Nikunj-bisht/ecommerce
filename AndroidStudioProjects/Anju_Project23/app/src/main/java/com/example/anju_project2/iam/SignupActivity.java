@@ -1,6 +1,7 @@
 package com.example.anju_project2.iam;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -41,6 +42,10 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+        getSupportActionBar().setElevation(0);
         editText = findViewById(R.id.username);
         editText2 = findViewById(R.id.password);
         progressBar = findViewById(R.id.progressBar6);

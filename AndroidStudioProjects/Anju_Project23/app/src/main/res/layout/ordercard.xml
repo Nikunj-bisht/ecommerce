@@ -55,6 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-black"
                     android:text="TextView" />
 
                 <TextView
@@ -62,6 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-medium"
                     android:text="TextView" />
 
                 <TextView
@@ -69,6 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-black"
                     android:text="TextView" />
 
                 <TextView
@@ -76,14 +79,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="TextView" />
 
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="TextView" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

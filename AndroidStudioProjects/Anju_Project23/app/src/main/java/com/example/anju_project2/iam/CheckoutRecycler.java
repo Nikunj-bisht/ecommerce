@@ -17,6 +17,7 @@ import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.anju_project2.R;
 import com.example.anju_project2.products.ProductView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -44,10 +45,16 @@ public class CheckoutRecycler extends RecyclerView.Adapter<CheckoutCardView> {
       public void onBindViewHolder(@NonNull CheckoutCardView holder, int position) {
 
             holder.getTextView().setText(arrayList.get(position).getName());
-            holder.getTextView1().setText(arrayList.get(position).getName());
+            holder.getTextView1().setText(arrayList.get(position).getTitle());
             holder.getTextView2().setText("Qty-"+arrayList.get(position).getQuantity());
             holder.getTextView3().setText("Size-"+arrayList.get(position).getSize());
-            new Thread(new Pictures(position,holder.getImageView(),context)).start();
+
+            String url =  arrayList.get(position).getUrl();
+
+            if(!arrayList.get(position).getUrl().contains("https")){
+                  url = url.replaceFirst("http","https");
+            }
+            Picasso.get().load(url).placeholder(R.drawable.logo).into(holder.getImageView());
       }
 
       @Override
@@ -55,39 +62,6 @@ public class CheckoutRecycler extends RecyclerView.Adapter<CheckoutCardView> {
             return arrayList.size();
       }
 
-      class Pictures extends Thread {
 
-            int i;
-            ImageView imageView;
-            Context context;
-
-            Pictures(int pos, ImageView imageView, Context context) {
-                  this.i = pos;
-                  this.imageView = imageView;
-                  this.context = context;
-            }
-
-            @Override
-            public void run() {
-                  RequestQueue requestQueue = Volley.newRequestQueue(context);
-                  ImageRequest imageRequest = new ImageRequest(arrayList.get(i).getUrl(), new Response.Listener<Bitmap>() {
-                        @Override
-                        public void onResponse(Bitmap response) {
-
-                              imageView.setImageBitmap(response);
-
-                        }
-                  }, 0, 0, ImageView.ScaleType.FIT_XY, Bitmap.Config.RGB_565, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-
-                        }
-                  });
-
-                  requestQueue.add(imageRequest);
-
-            }
-      }
 
 }
