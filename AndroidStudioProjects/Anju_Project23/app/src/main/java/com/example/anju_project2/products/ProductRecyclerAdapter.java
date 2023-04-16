@@ -63,7 +63,17 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductView> {
     public void onBindViewHolder(@NonNull ProductView holder, @SuppressLint("RecyclerView") int position) {
         holder.getTextView().setText(clothingDtoArrayList.get(position).getName());
         holder.getTextView2().setText(clothingDtoArrayList.get(position).getTitle());
-        holder.getView().setOnClickListener(click -> callback.getProductDetails(clothingDtoArrayList.get(position).getId()));
+        holder.getView().setOnClickListener(click ->
+                {
+                    if (!sharedPref.getString("userId", "").equals("3RxOxSuH6UBqqLOWXV37")) {
+
+                        callback.getProductDetails(clothingDtoArrayList.get(position).getId());
+                    }
+                }
+                    );
+
+
+
         holder.getTextView1().setText(clothingDtoArrayList.get(position).getPrice());
         if (sharedPref.getString("userId", "").equals("3RxOxSuH6UBqqLOWXV37")) {
             holder.getImageButton().setImageResource(R.drawable.baseline_delete_24);
@@ -83,9 +93,11 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductView> {
         final int i = position;
         holder.getImageView().setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)  {
+                if (!sharedPref.getString("userId", "").equals("3RxOxSuH6UBqqLOWXV37")) {
 
-                callback.getProductDetails(clothingDtoArrayList.get(position).getId());
+                    callback.getProductDetails(clothingDtoArrayList.get(position).getId());
+                }
             }
         });
         String url =  clothingDtoArrayList.get(i).getUrl();

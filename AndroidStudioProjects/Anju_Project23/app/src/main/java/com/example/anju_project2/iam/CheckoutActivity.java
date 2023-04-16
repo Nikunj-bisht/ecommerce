@@ -24,11 +24,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.anju_project2.R;
 import com.example.anju_project2.products.GridSpacingItemDecoration;
+import com.example.anju_project2.products.ProductActivity;
 import com.example.anju_project2.products.ProductRecyclerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -51,7 +53,7 @@ public class CheckoutActivity extends AppCompatActivity {
     ArrayList<OrderDto> arrayList = new ArrayList<>();
     Button button;
     ProgressBar progressBar;
-
+   ImageView imageView;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,15 @@ public class CheckoutActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.actionbar);
         getSupportActionBar().setElevation(0);
+        View view = getSupportActionBar().getCustomView();
+        imageView = view.findViewById(R.id.icon);
+        imageView.setOnClickListener(click -> {
+            Intent gotoScreenVar = new Intent(CheckoutActivity.this, ProductActivity.class);
+
+            gotoScreenVar.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(gotoScreenVar);
+        });
         String pId = getIntent().getStringExtra("pId");
         recyclerView = findViewById(R.id.orderView);
         button = findViewById(R.id.button);

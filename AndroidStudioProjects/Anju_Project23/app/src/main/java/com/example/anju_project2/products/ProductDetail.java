@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -47,7 +48,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductDetail extends AppCompatActivity {
-    ImageView imageView;
+    ImageView imageView,imageView2;
     TextView textView;
     TextView textView1;
     Button button;
@@ -56,7 +57,7 @@ public class ProductDetail extends AppCompatActivity {
     Spinner spinner,spinner2;
     String quantity = "1",size = "S";
     ProgressBar progressBar;
-
+    ImageButton imageButton;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,18 @@ public class ProductDetail extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.actionbar);
         getSupportActionBar().setElevation(0);
+        View view = getSupportActionBar().getCustomView();
+        imageView2 = view.findViewById(R.id.icon);
+        imageView2.setOnClickListener(click -> {
+            Intent gotoScreenVar = new Intent(ProductDetail.this, ProductActivity.class);
+
+            gotoScreenVar.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(gotoScreenVar);
+        });
+        imageButton
+                 = findViewById(R.id.imageButton3);
+        imageButton.setOnClickListener(click -> super.onBackPressed());
 //        getSupportActionBar().hide();
         imageView = findViewById(R.id.imageView2);
         textView = findViewById(R.id.textView4);
@@ -73,13 +86,15 @@ public class ProductDetail extends AppCompatActivity {
 //        button8 = findViewById(R.id.button8);
         button9 = findViewById(R.id.button9);
         spinner = findViewById(R.id.spinner);
+
+        spinner2 = findViewById(R.id.spinner2);
         progressBar = findViewById(R.id.progressBar3);
-        String[] items = new String[]{"1", "2", "3", "4", "5", "6", "7", "10", "11"};
-        String[] sizes = new String[]{"S","M","L","XL","XXL"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        String[] items = new String[]{"Qty","1", "2", "3", "4", "5", "6", "7", "10", "11"};
+        String[] sizes = new String[]{"Size","S","M","L","XL","XXL"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1   , items);
 //set the spinners adapter to the previously created one.
         spinner.setAdapter(adapter);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sizes);
 //set the spinners adapter to the previously created one.
         spinner2.setAdapter(adapter2);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -148,6 +163,7 @@ public class ProductDetail extends AppCompatActivity {
                 Intent intent = new Intent(ProductDetail.this, CheckoutActivity.class);
                 intent.putExtra("uId", id);
                 intent.putExtra("pId", clothingDto1.getId());
+                button9.setVisibility(View.VISIBLE);
                 startActivity(intent);
             }).addOnFailureListener(fail -> {
 
@@ -161,6 +177,7 @@ public class ProductDetail extends AppCompatActivity {
     }
 
     private void getProductDetails(String id) throws IOException {
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         final ClothingDto[] clothingDto = {new ClothingDto()};
         db.collection("products").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

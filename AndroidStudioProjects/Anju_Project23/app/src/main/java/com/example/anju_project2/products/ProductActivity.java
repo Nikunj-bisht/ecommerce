@@ -33,6 +33,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 public class ProductActivity extends AppCompatActivity implements ProductRecyclerAdapter.ProductCallback {
     private RecyclerView recyclerView;

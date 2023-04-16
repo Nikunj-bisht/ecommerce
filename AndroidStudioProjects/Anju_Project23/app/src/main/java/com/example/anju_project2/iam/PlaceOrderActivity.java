@@ -46,6 +46,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
         button = findViewById(R.id.button4);
         button.setOnClickListener(click -> placeOrder());
         progressBar = findViewById(R.id.progressBar8);
+        editText = findViewById(R.id.editTextNumber2);
         arrayList = (ArrayList<OrderDto>) getIntent().getSerializableExtra("data");
         editText.addTextChangedListener(new TextWatcher() {
             @Override
