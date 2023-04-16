@@ -4,22 +4,36 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network"
         android:supportsRtl="true"
         android:theme="@style/Theme.Anju_Project2"
         tools:targetApi="31">
+        <activity
+            android:name=".iam.PlaceOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".products.AddProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".iam.CheckoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".iam.SignupActivity"
+            android:exported="false" />
         <activity
             android:name=".products.ProductDetail"
             android:exported="false" />
         <activity
             android:name=".products.ProductActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Anju_Project2" />
         <activity
             android:name=".home.MainActivity"
             android:exported="false" />

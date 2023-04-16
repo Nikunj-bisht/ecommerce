@@ -1,6 +1,7 @@
 package com.example.anju_project2.products;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ public class ProductView extends RecyclerView.ViewHolder {
     private View view;
     private TextView textView1;
     private TextView textView2;
+    ImageButton imageButton;
     public TextView getTextView1() {
         return textView1;
     }
@@ -30,6 +32,7 @@ public class ProductView extends RecyclerView.ViewHolder {
         imageView = itemView.findViewById(R.id.imageView);
         textView1 = itemView.findViewById(R.id.textView2);
         textView2 = itemView.findViewById(R.id.textView6);
+        imageButton = itemView.findViewById(R.id.imageButton);
         this.view = itemView;
     }
 
@@ -47,6 +50,14 @@ public class ProductView extends RecyclerView.ViewHolder {
 
     public void setImageView(ImageView imageView) {
         this.imageView = imageView;
+    }
+
+    public ImageButton getImageButton() {
+        return imageButton;
+    }
+
+    public void setImageButton(ImageButton imageButton) {
+        this.imageButton = imageButton;
     }
 
     public View getView() { return this.view ;}

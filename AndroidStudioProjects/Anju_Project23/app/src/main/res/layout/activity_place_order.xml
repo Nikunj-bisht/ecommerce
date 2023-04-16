@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".iam.PlaceOrderActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="321dp"
+                android:text="Deliver To : " />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName4"
+                android:layout_width="337dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="56dp"
+                android:background="@drawable/textinputstyle"
+                android:ems="10"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:paddingLeft="8dp" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName5"
+                android:layout_width="337dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="53dp"
+                android:background="@drawable/textinputstyle"
+                android:ems="10"
+                android:hint="Mobile No*"
+                android:inputType="number|textPersonName"
+                android:paddingLeft="8dp" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="331dp"
+                android:layout_marginBottom="27dp"
+                android:text="Address :" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName6"
+                android:layout_width="337dp"
+                android:layout_height="57dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="54dp"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/textinputstyle"
+                android:ems="10"
+                android:hint="Full Address(House No,Building)"
+                android:inputType="textPersonName"
+                android:paddingLeft="8dp" />
+
+            <EditText
+                android:id="@+id/editTextTextPostalAddress"
+                android:layout_width="337dp"
+                android:layout_height="57dp"
+                android:layout_marginStart="21dp"
+                android:layout_marginEnd="53dp"
+                android:layout_marginBottom="39dp"
+                android:background="@drawable/textinputstyle"
+                android:ems="10"
+                android:hint="pincode"
+                android:inputType="textPostalAddress"
+                android:paddingLeft="8dp" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="179dp"
+                android:layout_marginBottom="42dp"
+                android:text="Payment" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName7"
+                android:layout_width="337dp"
+                android:layout_height="57dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="181dp"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/textinputstyle"
+                android:ems="10"
+                android:hint="Card Number"
+                android:inputType="number|textPersonName|text"
+                android:paddingLeft="8dp" />
+
+            <EditText
+                android:id="@+id/editTextNumber"
+                android:layout_width="337dp"
+                android:layout_height="57dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="178dp"
+                android:background="@drawable/textinputstyle"
+                android:ems="10"
+                android:hint="Name on Card"
+                android:inputType="number"
+                android:paddingLeft="8dp" />
+
+            <EditText
+                android:id="@+id/editTextNumber2"
+                android:layout_width="337dp"
+                android:layout_height="57dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/textinputstyle"
+                android:ems="10"
+                android:hint="CVV"
+                android:inputType="number"
+                android:paddingLeft="8dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar8"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="place order" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

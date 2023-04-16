@@ -1,6 +1,8 @@
 package com.example.anju_project2.products;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +18,10 @@ import com.android.volley.toolbox.Volley;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.cloudinary.android.MediaManager;
 import com.example.anju_project2.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -27,6 +32,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductView> {
     public interface ProductCallback {
 
        void getProductDetails(String id);
+       void deleteProducct(String id);
 
     }
     private ArrayList<ClothingDto> clothingDtoArrayList;
@@ -34,6 +40,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductView> {
     Context context;
 
     ProductCallback callback;
+    SharedPreferences sharedPref ;
 
 
     public ProductRecyclerAdapter(ArrayList<ClothingDto> clothingDtoArrayList, Context context,ProductCallback productCallback) {
@@ -41,6 +48,8 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductView> {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.callback = productCallback;
+
+        this.sharedPref = context.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
     }
 
     @NonNull
@@ -51,11 +60,26 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductView> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductView holder, int position) {
+    public void onBindViewHolder(@NonNull ProductView holder, @SuppressLint("RecyclerView") int position) {
         holder.getTextView().setText(clothingDtoArrayList.get(position).getName());
         holder.getTextView2().setText(clothingDtoArrayList.get(position).getTitle());
         holder.getView().setOnClickListener(click -> callback.getProductDetails(clothingDtoArrayList.get(position).getId()));
         holder.getTextView1().setText(clothingDtoArrayList.get(position).getPrice());
+        if (sharedPref.getString("userId", "").equals("3RxOxSuH6UBqqLOWXV37")) {
+            holder.getImageButton().setImageResource(R.drawable.baseline_delete_24);
+        } else {
+            holder.getImageButton().setImageResource(R.drawable.baseline_shopping_bag_24);
+        }
+        holder.getImageButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                  if(sharedPref.getString("userId", "").equals("3RxOxSuH6UBqqLOWXV37")){
+
+                          callback.deleteProducct(clothingDtoArrayList.get(position).getId());
+
+                  }
+            }
+        });
         final int i = position;
         holder.getImageView().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +88,14 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductView> {
                 callback.getProductDetails(clothingDtoArrayList.get(position).getId());
             }
         });
-        new Pictures(position, holder.getImageView(),context).start();
+        String url =  clothingDtoArrayList.get(i).getUrl();
+
+        if(!clothingDtoArrayList.get(i).getUrl().contains("https")){
+            url = url.replaceFirst("http","https");
+        }
+           Picasso.get().setLoggingEnabled(true);
+            Picasso.get().load(url).placeholder(R.drawable.logo).resize(204,274).into(holder.getImageView());
+
     }
 
     @Override
@@ -88,22 +119,28 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductView> {
         @Override
         public void run() {
             RequestQueue requestQueue = Volley.newRequestQueue(context);
-            ImageRequest imageRequest = new ImageRequest(clothingDtoArrayList.get(i).getUrl(), new Response.Listener<Bitmap>() {
-                @Override
-                public void onResponse(Bitmap response) {
+            if(clothingDtoArrayList.get(i).getUrl().contains("cloudinary")){
 
-                    imageView.setImageBitmap(response);
+                Picasso.get().load(clothingDtoArrayList.get(i).getUrl()).into(imageView);
+            }else{
+                ImageRequest imageRequest = new ImageRequest(clothingDtoArrayList.get(i).getUrl(), new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap response) {
 
-                }
-            }, 0, 0, ImageView.ScaleType.FIT_XY, Bitmap.Config.RGB_565, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
+                        imageView.setImageBitmap(response);
+
+                    }
+                }, 0, 0, ImageView.ScaleType.FIT_XY, Bitmap.Config.RGB_565, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
 
-                }
-            });
+                    }
+                });
 
-            requestQueue.add(imageRequest);
+                requestQueue.add(imageRequest);
+
+            }
 
         }
     }
