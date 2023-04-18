@@ -89,8 +89,8 @@ public class ProductDetail extends AppCompatActivity {
 
         spinner2 = findViewById(R.id.spinner2);
         progressBar = findViewById(R.id.progressBar3);
-        String[] items = new String[]{"Qty","1", "2", "3", "4", "5", "6", "7", "10", "11"};
-        String[] sizes = new String[]{"Size","S","M","L","XL","XXL"};
+        String[] items = new String[]{"1", "2", "3", "4", "5", "6", "7", "10", "11"};
+        String[] sizes = new String[]{"S","M","L","XL","XXL"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1   , items);
 //set the spinners adapter to the previously created one.
         spinner.setAdapter(adapter);

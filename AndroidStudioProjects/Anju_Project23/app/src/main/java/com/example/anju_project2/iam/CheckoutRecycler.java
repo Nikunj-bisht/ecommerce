@@ -21,6 +21,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+ interface CheckoutInter{
+      void delete(String id);
+}
+
 public class CheckoutRecycler extends RecyclerView.Adapter<CheckoutCardView> {
 
 
@@ -48,7 +52,9 @@ public class CheckoutRecycler extends RecyclerView.Adapter<CheckoutCardView> {
             holder.getTextView1().setText(arrayList.get(position).getTitle());
             holder.getTextView2().setText("Qty-"+arrayList.get(position).getQuantity());
             holder.getTextView3().setText("Size-"+arrayList.get(position).getSize());
+            holder.getImageButton().setOnClickListener(click ->{
 
+            } );
             String url =  arrayList.get(position).getUrl();
 
             if(!arrayList.get(position).getUrl().contains("https")){

@@ -19,6 +19,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.anju_project2.R;
@@ -34,6 +35,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
     ArrayList<OrderDto> arrayList;
     EditText editText;
     String cvv="";
+    ImageView imageView;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,15 @@ public class PlaceOrderActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.actionbar);
         getSupportActionBar().setElevation(0);
+        View view = getSupportActionBar().getCustomView();
+        imageView = view.findViewById(R.id.icon);
+        imageView.setOnClickListener(click -> {
+            Intent gotoScreenVar = new Intent(PlaceOrderActivity.this, ProductActivity.class);
+
+            gotoScreenVar.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(gotoScreenVar);
+        });
         button = findViewById(R.id.button4);
         button.setOnClickListener(click -> placeOrder());
         progressBar = findViewById(R.id.progressBar8);

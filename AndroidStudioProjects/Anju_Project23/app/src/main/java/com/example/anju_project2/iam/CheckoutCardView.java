@@ -1,6 +1,7 @@
 package com.example.anju_project2.iam;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +14,7 @@ public class CheckoutCardView extends RecyclerView.ViewHolder {
 
     ImageView imageView;
     TextView textView, textView1, textView2, textView3, textView4;
-
+   ImageButton imageButton;
     public CheckoutCardView(@NonNull View itemView) {
         super(itemView);
 
@@ -22,7 +23,7 @@ public class CheckoutCardView extends RecyclerView.ViewHolder {
         textView1 = itemView.findViewById(R.id.textView8);
         textView2 = itemView.findViewById(R.id.textView10);
         textView3 = itemView.findViewById(R.id.textView11);
-
+        imageButton = itemView.findViewById(R.id.imageButton2);
 
     }
 
@@ -40,6 +41,14 @@ public class CheckoutCardView extends RecyclerView.ViewHolder {
 
     public void setTextView(TextView textView) {
         this.textView = textView;
+    }
+
+    public ImageButton getImageButton() {
+        return imageButton;
+    }
+
+    public void setImageButton(ImageButton imageButton) {
+        this.imageButton = imageButton;
     }
 
     public TextView getTextView1() {
