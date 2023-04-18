@@ -60,7 +60,7 @@
         android:background="@drawable/textinputstyle"
         android:ems="10"
         android:hint="Price"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:paddingLeft="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

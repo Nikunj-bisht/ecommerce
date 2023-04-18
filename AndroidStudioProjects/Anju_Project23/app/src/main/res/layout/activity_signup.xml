@@ -18,32 +18,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="1dp"
-        android:gravity="center"
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="336dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="101dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="21dp"
+        android:background="@drawable/textinputstyle"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:paddingLeft="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/username"
-            android:layout_width="336dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/textinputstyle"
-            android:hint="Username" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="336dp"
         android:layout_height="60dp"
         android:layout_marginStart="37dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="38dp"
         android:background="@drawable/textinputstyle"
         android:ems="10"
@@ -52,7 +50,7 @@
         android:paddingLeft="11dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <Button
         android:id="@+id/button2"

@@ -32,7 +32,7 @@ import java.util.Map;
 public class SignupActivity extends AppCompatActivity {
 
     Button button2;
-    TextInputEditText editText;
+    EditText editText;
     EditText editText2;
     String userName = "", password = "";
     ProgressBar progressBar;

@@ -133,7 +133,7 @@ public class ProductDetail extends AppCompatActivity {
 
 
     private void addToBag() {
-          button9.setVisibility(View.INVISIBLE);
+
         SharedPreferences sharedPref = getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
         String name = sharedPref.getString("isSignup", "");
         if (name.equals("")) {
@@ -143,7 +143,7 @@ public class ProductDetail extends AppCompatActivity {
             startActivity(intent);
         } else {
 
-
+            button9.setVisibility(View.INVISIBLE);
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 //            SharedPreferences sharedPref1 = getSharedPreferences("myPreferences",Context.MODE_PRIVATE);
             String id = sharedPref.getString("userId", "");
